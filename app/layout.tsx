@@ -13,20 +13,6 @@ export const metadata: Metadata = {
     "I build modern, fast, and animated web experiences. Front-End Developer specializing in React, Tailwind CSS, and Framer Motion.",
   generator: "v0.app",
   icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
     apple: "/apple-icon.png",
   },
 };
