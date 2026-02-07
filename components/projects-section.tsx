@@ -8,6 +8,54 @@ import { Button } from "@/components/ui/button";
 
 const projects = [
   {
+    title: "NexaTeck – Modern Digital Services Website",
+    description:
+      "NexaTeck is a sleek and modern digital services website showcasing professional solutions with a clean UI and intuitive layout. Designed to highlight contemporary web design and responsive user experience.",
+    image: "/nexa.png",
+    technologies: ["React", "Tailwind CSS", "React Icon", "Framer Motion"],
+    liveUrl: "https://pro-bloom-web-main.vercel.app/",
+    githubUrl: "https://github.com/MoohammedAdell/pro-bloom-web-main",
+  },
+  {
+    title: "LUXE - E-Commerce",
+    description:
+      "A clean and modern furniture showcase website presenting premium home furniture collections with stylish design and intuitive navigation. Built to highlight elegant product layouts and responsive UI for a polished online shopping experience.",
+    image: "/luxy.png",
+    technologies: ["React", "Tailwind CSS", "React Icon", "Framer Motion"],
+    liveUrl: "https://luxe-11.vercel.app/",
+    githubUrl: "https://github.com/MoohammedAdell/luxe",
+  },
+  {
+    title: "Modern E-Commerce Web App",
+    description:
+      "A sleek and responsive e-commerce web application featuring a clean product showcase and intuitive shopping layout. Designed to highlight modern online store UI patterns and front-end development skills for a professional shopping experience.",
+    image: "/ecom.png",
+    technologies: [
+      "React",
+      "Tailwind CSS",
+      "React Icon",
+      "Framer Motion",
+      "Swiper",
+    ],
+    liveUrl: "https://e-commerch.vercel.app/",
+    githubUrl: "https://github.com/MoohammedAdell/E-commerch",
+  },
+  {
+    title: "Netflix Clone",
+    description:
+      "A responsive Netflix-inspired web app that displays movies and TV shows in a clean, modern UI. Built to showcase front-end skills, smooth interactions, and dynamic content fetching using modern web technologies.",
+    image: "/netflix.png",
+    technologies: [
+      "React",
+      "Tailwind CSS",
+      "React Icon",
+      "Framer Motion",
+      "Supabase",
+    ],
+    liveUrl: "https://netflix-clone-two-beta-27.vercel.app/",
+    githubUrl: "https://github.com/MoohammedAdell/netflix",
+  },
+  {
     title: "Movie App",
     description:
       "A responsive movie website that showcases a collection of full-length movies with categorized genres, release years, and ratings. The platform features a clean UI, movie posters grid layout, and easy navigation for browsing and discovering films.",
@@ -48,7 +96,12 @@ const projects = [
     description:
       "A sleek Apple-style product showcase site with clean design and responsive layout.",
     image: "/apple.jpg",
-    technologies: ["React", "Tailwind CSS","Framer Motion","Responsive Design"],
+    technologies: [
+      "React",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Responsive Design",
+    ],
     liveUrl: "https://apple-tony.vercel.app/",
     githubUrl: "https://github.com/MoohammedAdell/Apple-Tony",
   },
