@@ -133,7 +133,7 @@ export function ProjectsSection() {
             <motion.span
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.3 }}
               className="text-primary text-sm font-mono mb-4 block"
             >
               {"// My Work"}
