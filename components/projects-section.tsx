@@ -113,7 +113,7 @@ const projects = [
     technologies: ["React", "Tailwind CSS", "Crud Operations", "React Icon"],
     liveUrl: "https://meal-chef.vercel.app/",
     githubUrl: "https://github.com/MoohammedAdell/Meal-Chef",
-  },u
+  },
 ];
 
 export function ProjectsSection() {
@@ -126,7 +126,7 @@ export function ProjectsSection() {
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1.0 ,y: 0 } : {}}
+          animate={isInView ? { opacity: 1.0, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
           <div className="text-center mb-16">
