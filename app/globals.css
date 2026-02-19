@@ -3,7 +3,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Updated CSS variables to match Mohamed's dark tech portfolio color palette */
 :root {
   --background: #0f172a;
   --foreground: #e5e7eb;
@@ -119,6 +118,8 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    scrollbar-width: thin;
+    scrollbar-color: #1e293b #020617;
   }
   body {
     @apply bg-background text-foreground;
@@ -126,4 +127,26 @@
   html {
     scroll-behavior: smooth;
   }
+  ::selection {
+    background-color: rgba(59, 130, 246, 0.3);
+    color: #fff;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 100px;
+  border: 2px solid #020617;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8;
 }

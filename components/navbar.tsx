@@ -1,95 +1,144 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X } from "lucide-react"
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Rocket } from "lucide-react";
 
 const navItems = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
+  { name: "Process", href: "#process" }, 
   { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
-]
+];
 
 export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border"
-    >
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <motion.a
-            href="#home"
-            className="text-xl font-bold text-primary"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {"<MA />"}
-          </motion.a>
+    <div className="fixed top-0 left-0 right-0 z-[100] flex justify-center p-4 sm:p-6 pointer-events-none">
+      <motion.header
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        className={`
+          pointer-events-auto
+          flex items-center justify-between 
+          px-6 py-3 rounded-full 
+          transition-all duration-500 ease-in-out
+          ${scrolled 
+            ? "bg-black/60 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.8)] w-full max-w-5xl" 
+            : "bg-transparent border border-transparent w-full max-w-7xl"
+          }
+        `}
+      >
+        {/* Logo */}
+        <motion.a
+          href="#home"
+          className="text-2xl font-black text-white tracking-tighter flex items-center gap-1 group"
+          whileHover={{ scale: 1.05 }}
+        >
+          <span className="text-primary group-hover:italic transition-all">M</span>
+          ADEL
+          <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+        </motion.a>
 
-          {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-8">
-            {navItems.map((item, index) => (
-              <motion.li
-                key={item.name}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:block"> {/* غيرتها لـ LG عشان تستوعب العناصر الزيادة بشياكة */}
+          <ul className="flex items-center gap-1">
+            {navItems.map((item) => (
+              <li key={item.name} className="relative group">
                 <a
                   href={item.href}
-                  className="text-muted-foreground hover:text-primary transition-colors duration-300 text-sm font-medium"
+                  className="px-4 py-2 text-sm font-medium text-slate-400 hover:text-white transition-colors relative z-10"
                 >
                   {item.name}
                 </a>
-              </motion.li>
+                <motion.div 
+                  className="absolute inset-0 bg-primary/10 rounded-full opacity-0 group-hover:opacity-100 -z-0"
+                  layoutId="navHover"
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
+              </li>
             ))}
           </ul>
+        </nav>
 
-          {/* Mobile Menu Button */}
-          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-foreground p-2" aria-label="Toggle menu">
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+        {/* CTA Button (Desktop) */}
+        <div className="hidden md:block">
+          <motion.a
+            href="#contact"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-5 py-2.5 bg-primary text-black text-[10px] font-black uppercase tracking-widest rounded-full flex items-center gap-2 hover:shadow-[0_0_20px_rgba(56,189,248,0.5)] transition-all"
+          >
+            Hire Me
+            <Rocket size={14} />
+          </motion.a>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Menu Button */}
+        <button 
+          onClick={() => setIsOpen(!isOpen)} 
+          className="lg:hidden w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white transition-transform active:scale-90"
+        >
+          <AnimatePresence mode="wait">
+            {isOpen ? <X key="close" size={20} /> : <Menu key="open" size={20} />}
+          </AnimatePresence>
+        </button>
+
+        {/* Mobile Navigation Overlay */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden overflow-hidden"
+              initial={{ opacity: 0, scale: 0.95, y: -20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -20 }}
+              className="absolute top-full left-0 right-0 mt-4 p-2 lg:hidden pointer-events-auto"
             >
-              <ul className="py-4 space-y-4">
-                {navItems.map((item, index) => (
-                  <motion.li
-                    key={item.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <a
-                      href={item.href}
-                      onClick={() => setIsOpen(false)}
-                      className="block text-muted-foreground hover:text-primary transition-colors duration-300"
+              <div className="bg-[#030712]/95 border border-white/10 backdrop-blur-2xl rounded-[2.5rem] p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+                <ul className="flex flex-col gap-1">
+                  {navItems.map((item, index) => (
+                    <motion.li
+                      key={item.name}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
                     >
-                      {item.name}
-                    </a>
-                  </motion.li>
-                ))}
-              </ul>
+                      <a
+                        href={item.href}
+                        onClick={() => setIsOpen(false)}
+                        className="flex items-center justify-between p-4 rounded-2xl text-lg font-bold text-slate-300 hover:text-primary hover:bg-white/5 transition-all group"
+                      >
+                        {item.name}
+                        <span className="opacity-0 group-hover:opacity-100 transition-opacity text-xs font-mono">/0{index + 1}</span>
+                      </a>
+                    </motion.li>
+                  ))}
+                </ul>
+                
+                {/* Mobile CTA */}
+                <div className="mt-6 pt-6 border-t border-white/5">
+                  <a 
+                    href="#contact"
+                    onClick={() => setIsOpen(false)}
+                    className="w-full py-4 bg-primary text-black rounded-2xl flex items-center justify-center font-black uppercase tracking-tighter gap-2"
+                  >
+                    Start a Project <Rocket size={18} />
+                  </a>
+                </div>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
-      </nav>
-    </motion.header>
-  )
+      </motion.header>
+    </div>
+  );
 }
