@@ -7,7 +7,6 @@ import { ContactSection } from "@/components/contact-section";
 import { Footer } from "@/components/footer";
 import { MouseCursor } from "@/components/mouse-cursor";
 import { ProcessSection } from "@/components/process-section";
-import { RevealSection } from "@/components/ui/RevealSection";
 
 export default function Home() {
   return (
@@ -15,21 +14,10 @@ export default function Home() {
       <MouseCursor />
       <Navbar />
       <HeroSection />
-
-      <RevealSection>
-        <AboutSection />
-      </RevealSection>
-
-      <RevealSection>
-        <SkillsSection />
-      </RevealSection>
-
-      <RevealSection>
-        <ProcessSection />
-      </RevealSection>
-      <RevealSection>
-        <ProjectsSection />
-      </RevealSection>
+      <AboutSection />
+      <SkillsSection />
+      <ProcessSection />
+      <ProjectsSection />
       <ContactSection />
       <Footer />
     </main>

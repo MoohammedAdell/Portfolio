@@ -6,16 +6,13 @@ import { motion, useSpring, useMotionValue } from "framer-motion";
 export function MouseCursor() {
   const [isHovering, setIsHovering] = useState(false);
   
-  // قيم الماوس الأساسية
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // إعدادات الـ Spring عشان الحركة تكون "Smooth" جداً وفلترتها ممتازة
   const springConfig = { damping: 20, stiffness: 250, mass: 0.5 };
   const mainCursorX = useSpring(mouseX, springConfig);
   const mainCursorY = useSpring(mouseY, springConfig);
 
-  // إعدادات للوهج (Glow) بحيث يكون أبطأ شوية في الحركة فيعمل تأثير "Lag" جمالي
   const glowX = useSpring(mouseX, { damping: 30, stiffness: 100 });
   const glowY = useSpring(mouseY, { damping: 30, stiffness: 100 });
 
@@ -24,7 +21,6 @@ export function MouseCursor() {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
 
-      // اكتشاف إذا كان الماوس فوق عنصر قابل للضغط (زرار، لينك)
       const target = e.target as HTMLElement;
       const isSelectable = 
         window.getComputedStyle(target).cursor === "pointer" || 
@@ -40,7 +36,6 @@ export function MouseCursor() {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[99999] hidden md:block">
-      {/* 1. النقطة المركزية (الصلبة) */}
       <motion.div
         className="fixed w-2 h-2 bg-primary rounded-full"
         style={{
@@ -51,7 +46,6 @@ export function MouseCursor() {
         }}
       />
 
-      {/* 2. الدائرة الخارجية التفاعلية */}
       <motion.div
         className="fixed rounded-full border border-primary/50"
         animate={{
@@ -69,7 +63,6 @@ export function MouseCursor() {
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
       />
 
-      {/* 3. الوهج الضوئي (Ambient Glow) */}
       <motion.div
         className="fixed w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px]"
         style={{
@@ -80,7 +73,6 @@ export function MouseCursor() {
         }}
       />
 
-      {/* 4. نص تلميحي يظهر عند الـ Hover (اختياري - روقان زيادة) */}
       <AnimatePresence>
         {isHovering && (
           <motion.span
@@ -103,5 +95,4 @@ export function MouseCursor() {
   );
 }
 
-// متنساش تضيف AnimatePresence من framer-motion لو هتستخدم النص التلميحي
 import { AnimatePresence } from "framer-motion";

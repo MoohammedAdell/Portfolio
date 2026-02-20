@@ -16,37 +16,42 @@ export function LoadingScreen() {
   const [phraseIndex, setPhraseIndex] = useState(0);
 
   useEffect(() => {
+    let frameId: number;
+    let startTime: number;
+    const duration = 3000; 
+
+    const updateProgress = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progressValue = Math.min((elapsed / duration) * 100, 100);
+
+      setProgress(Math.floor(progressValue));
+
+      if (progressValue < 100) {
+        frameId = requestAnimationFrame(updateProgress);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    frameId = requestAnimationFrame(updateProgress);
+
     const phraseInterval = setInterval(() => {
       setPhraseIndex((prev) => (prev + 1) % PHRASES.length);
-    }, 1200);
-
-    const timer = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(timer);
-          clearInterval(phraseInterval);
-          setTimeout(() => setIsVisible(false), 1200);
-          return 100;
-        }
-        return prev + 1;
-      });
-    }, 25);
+    }, 1000); 
 
     return () => {
-      clearInterval(timer);
+      cancelAnimationFrame(frameId);
       clearInterval(phraseInterval);
     };
   }, []);
 
-  // Section: Exit Animation Configuration
   const mainScreenVariants = {
     exit: {
-      scale: 1.1,
-      filter: "blur(20px)",
       opacity: 0,
       transition: {
-        duration: 1,
-        ease: [0.7, 0, 0.3, 1],
+        duration: 0.2, 
+        ease: "easeOut",
       },
     },
   };
@@ -56,9 +61,9 @@ export function LoadingScreen() {
     exit: (i: number) => ({
       height: "0%",
       transition: {
-        duration: 0.8,
-        ease: [0.8, 0, 0.1, 1],
-        delay: i * 0.08,
+        duration: 0.3,
+        ease: [0.45, 0, 0.55, 1],
+        delay: i * 0.02, 
       },
     }),
   };
@@ -72,10 +77,8 @@ export function LoadingScreen() {
           exit="exit"
           className="fixed inset-0 z-[10000] flex overflow-hidden bg-black cursor-none"
         >
-          {/* Section: Background Noise & Particles */}
           <div className="absolute inset-0 z-50 opacity-[0.05] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
           
-          {/* Section: Geometric Panels */}
           <div className="absolute inset-0 flex flex-col z-10">
             {[...Array(6)].map((_, i) => (
               <motion.div
@@ -89,15 +92,12 @@ export function LoadingScreen() {
             ))}
           </div>
 
-          {/* Section: Core Content Wrapper */}
           <div className="relative z-[60] flex flex-col items-center justify-center w-full h-full">
-            
-            {/* Section: Animated Typography */}
             <div className="relative mb-12">
               <motion.div
                 initial={{ opacity: 0, letterSpacing: "-0.5em" }}
                 animate={{ opacity: 1, letterSpacing: "0.1em" }}
-                transition={{ duration: 1.5, ease: "circOut" }}
+                transition={{ duration: 1, ease: "circOut" }}
                 className="flex"
               >
                 {["M", "A", "D", "E", "L", "."].map((char, i) => (
@@ -109,7 +109,7 @@ export function LoadingScreen() {
                     }}
                     transition={{ 
                       y: { repeat: Infinity, duration: 2, delay: i * 0.1 },
-                      color: { duration: 0.5 }
+                      color: { duration: 0.2 }
                     }}
                     className={`text-7xl md:text-[10rem] font-black italic tracking-tighter ${
                       char === "M" || char === "." ? "text-primary" : "text-white"
@@ -119,11 +119,9 @@ export function LoadingScreen() {
                   </motion.span>
                 ))}
               </motion.div>
-              {/* Logo Glow */}
               <div className="absolute inset-0 bg-primary/20 blur-[100px] rounded-full -z-10" />
             </div>
 
-            {/* Section: Data Progress UI */}
             <div className="flex flex-col items-center gap-6">
               <div className="flex flex-col items-center">
                 <motion.span 
@@ -138,7 +136,6 @@ export function LoadingScreen() {
                 </span>
               </div>
 
-              {/* Progress Line */}
               <div className="w-64 h-[2px] bg-white/5 relative">
                 <motion.div
                   initial={{ width: 0 }}
@@ -147,7 +144,6 @@ export function LoadingScreen() {
                 />
               </div>
 
-              {/* Section: Dynamic Phrases */}
               <div className="h-4 overflow-hidden">
                 <AnimatePresence mode="wait">
                   <motion.p
@@ -155,7 +151,7 @@ export function LoadingScreen() {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: -20, opacity: 0 }}
-                    transition={{ duration: 0.4 }}
+                    transition={{ duration: 0.2 }}
                     className="text-[9px] font-mono text-white/30 uppercase tracking-[0.5em]"
                   >
                     {PHRASES[phraseIndex]}
@@ -164,15 +160,13 @@ export function LoadingScreen() {
               </div>
             </div>
 
-            {/* Section: Scanning Line Effect */}
             <motion.div 
               animate={{ top: ["0%", "100%"] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
               className="absolute left-0 right-0 h-[1px] bg-primary/20 z-[70] shadow-[0_0_15px_#3b82f6]"
             />
           </div>
 
-          {/* Section: Cyberpunk Borders */}
           <div className="absolute inset-6 border border-white/[0.05] pointer-events-none z-[80]">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-primary" />
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-primary" />
