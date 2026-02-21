@@ -18,7 +18,7 @@ export function LoadingScreen() {
   useEffect(() => {
     let frameId: number;
     let startTime: number;
-    const duration = 3000; 
+    const duration = 2000; // وقت التحميل: ثانيتين
 
     const updateProgress = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
@@ -38,7 +38,7 @@ export function LoadingScreen() {
 
     const phraseInterval = setInterval(() => {
       setPhraseIndex((prev) => (prev + 1) % PHRASES.length);
-    }, 1000); 
+    }, 500);
 
     return () => {
       cancelAnimationFrame(frameId);
@@ -50,7 +50,7 @@ export function LoadingScreen() {
     exit: {
       opacity: 0,
       transition: {
-        duration: 0.2, 
+        duration: 0.2,
         ease: "easeOut",
       },
     },
@@ -63,7 +63,7 @@ export function LoadingScreen() {
       transition: {
         duration: 0.3,
         ease: [0.45, 0, 0.55, 1],
-        delay: i * 0.02, 
+        delay: i * 0.02,
       },
     }),
   };
@@ -75,9 +75,17 @@ export function LoadingScreen() {
           key="loader"
           variants={mainScreenVariants}
           exit="exit"
+          role="progressbar" // تحسين الـ Accessibility
+          aria-valuenow={progress}
+          aria-valuemin={0}
+          aria-valuemax={100}
           className="fixed inset-0 z-[10000] flex overflow-hidden bg-black cursor-none"
         >
-          <div className="absolute inset-0 z-50 opacity-[0.05] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+          {/* تحسين الـ Performance للصور الخلفية */}
+          <div 
+            className="absolute inset-0 z-50 opacity-[0.05] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" 
+            style={{ imageRendering: 'pixelated' }}
+          />
           
           <div className="absolute inset-0 flex flex-col z-10">
             {[...Array(6)].map((_, i) => (
@@ -119,6 +127,7 @@ export function LoadingScreen() {
                   </motion.span>
                 ))}
               </motion.div>
+              {/* توهج خلفي ناعم */}
               <div className="absolute inset-0 bg-primary/20 blur-[100px] rounded-full -z-10" />
             </div>
 
@@ -136,7 +145,8 @@ export function LoadingScreen() {
                 </span>
               </div>
 
-              <div className="w-64 h-[2px] bg-white/5 relative">
+              {/* بار التحميل */}
+              <div className="w-64 h-[2px] bg-white/5 relative overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${progress}%` }}
@@ -144,6 +154,7 @@ export function LoadingScreen() {
                 />
               </div>
 
+              {/* نصوص متغيرة */}
               <div className="h-4 overflow-hidden">
                 <AnimatePresence mode="wait">
                   <motion.p
@@ -160,6 +171,7 @@ export function LoadingScreen() {
               </div>
             </div>
 
+            {/* خط المسح الضوئي (Scanning Line) */}
             <motion.div 
               animate={{ top: ["0%", "100%"] }}
               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
@@ -167,6 +179,7 @@ export function LoadingScreen() {
             />
           </div>
 
+          {/* إطار الزينة الخارجي */}
           <div className="absolute inset-6 border border-white/[0.05] pointer-events-none z-[80]">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-primary" />
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-primary" />

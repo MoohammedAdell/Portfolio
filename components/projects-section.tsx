@@ -9,92 +9,101 @@ const projects = [
   {
     title: "NexaTeck",
     tagline: "Modern Digital Services",
-    description: "NexaTeck is a sleek and modern digital services website showcasing professional solutions with a clean UI and intuitive layout.",
+    description:
+      "NexaTeck is a sleek and modern digital services website showcasing professional solutions with a clean UI and intuitive layout.",
     image: "/nexa.png",
     technologies: ["React", "Tailwind CSS", "Framer Motion"],
     liveUrl: "https://pro-bloom-web-main.vercel.app/",
     githubUrl: "https://github.com/MoohammedAdell/pro-bloom-web-main",
-    color: "#38bdf8"
+    color: "#38bdf8",
   },
   {
     title: "LUXE",
     tagline: "E-Commerce Experience",
-    description: "A clean and modern furniture showcase website presenting premium home furniture collections with stylish design.",
+    description:
+      "A clean and modern furniture showcase website presenting premium home furniture collections with stylish design.",
     image: "/luxy.png",
     technologies: ["React", "Tailwind CSS", "Framer Motion"],
     liveUrl: "https://luxe-11.vercel.app/",
     githubUrl: "https://github.com/MoohammedAdell/luxe",
-    color: "#fbbf24"
+    color: "#fbbf24",
   },
   {
     title: "Netflix Clone",
     tagline: "Streaming UI",
-    description: "A responsive Netflix-inspired web app that displays movies and TV shows in a clean, modern UI.",
+    description:
+      "A responsive Netflix-inspired web app that displays movies and TV shows in a clean, modern UI.",
     image: "/netflix.png",
     technologies: ["React", "Supabase", "Tailwind"],
     liveUrl: "https://netflix-clone-two-beta-27.vercel.app/",
     githubUrl: "https://github.com/MoohammedAdell/netflix",
-    color: "#e11d48"
+    color: "#e11d48",
   },
   {
     title: "Modern E-Commerce",
     tagline: "Web Application",
-    description: "A sleek and responsive e-commerce web application featuring a clean product showcase and intuitive shopping layout.",
+    description:
+      "A sleek and responsive e-commerce web application featuring a clean product showcase and intuitive shopping layout.",
     image: "/ecom.png",
     technologies: ["React", "Tailwind CSS", "Swiper"],
     liveUrl: "https://e-commerch.vercel.app/",
     githubUrl: "https://github.com/MoohammedAdell/E-commerch",
-    color: "#10b981"
+    color: "#10b981",
   },
   {
     title: "Movie App",
     tagline: "Discovery Platform",
-    description: "A responsive movie website that showcases a collection of full-length movies with categorized genres.",
+    description:
+      "A responsive movie website that showcases a collection of full-length movies with categorized genres.",
     image: "/image.png",
     technologies: ["React", "Tailwind CSS", "React Icon"],
     liveUrl: "https://movies-tony.vercel.app/",
     githubUrl: "https://github.com/MoohammedAdell/movies-tony",
-    color: "#6366f1"
+    color: "#6366f1",
   },
   {
     title: "Quiz App",
     tagline: "Interactive Learning",
-    description: "A fun and interactive React quiz app that presents users with multiple-choice questions and instant feedback.",
+    description:
+      "A fun and interactive React quiz app that presents users with multiple-choice questions and instant feedback.",
     image: "/quiz.jpg",
     technologies: ["React", "Tailwind CSS", "Context API"],
     liveUrl: "https://react-quiz-eight-mauve.vercel.app/",
     githubUrl: "https://github.com/MoohammedAdell/react-quiz",
-    color: "#8b5cf6"
+    color: "#8b5cf6",
   },
   {
     title: "Books Finder",
     tagline: "API Integration",
-    description: "A simple React app that fetches and displays a list of books from an API in a clean layout.",
+    description:
+      "A simple React app that fetches and displays a list of books from an API in a clean layout.",
     image: "/bookFinder.jpg",
     technologies: ["React", "Tailwind CSS", "Google API"],
     liveUrl: "https://api-books-wine.vercel.app/",
     githubUrl: "https://github.com/MoohammedAdell/Api-Books",
-    color: "#f97316"
+    color: "#f97316",
   },
   {
     title: "Modern Landing Page",
     tagline: "Design Showcase",
-    description: "A modern responsive landing page built with clean design and smooth layout to showcase products.",
+    description:
+      "A modern responsive landing page built with clean design and smooth layout to showcase products.",
     image: "/landingPage.jpg",
     technologies: ["React", "Tailwind CSS", "Framer Motion"],
     liveUrl: "https://landing-modern-page.vercel.app/",
     githubUrl: "https://github.com/MoohammedAdell/landing-modern-page",
-    color: "#ec4899"
+    color: "#ec4899",
   },
   {
     title: "Apple Clone",
     tagline: "Premium UI",
-    description: "A sleek Apple-style product showcase site with clean design and responsive layout.",
+    description:
+      "A sleek Apple-style product showcase site with clean design and responsive layout.",
     image: "/apple.jpg",
     technologies: ["React", "Tailwind CSS", "Framer Motion"],
     liveUrl: "https://apple-tony.vercel.app/",
     githubUrl: "https://github.com/MoohammedAdell/Apple-Tony",
-    color: "#f8fafc"
+    color: "#f8fafc",
   },
 ];
 
@@ -107,7 +116,10 @@ export function ProjectsSection() {
   const visibleProjects = showAll ? projects : projects.slice(0, 3);
 
   return (
-    <section id="projects" className="py-24 sm:py-32 relative bg-[#020617] overflow-hidden">
+    <section
+      id="projects"
+      className="py-24 sm:py-32 relative bg-[#020617] overflow-hidden"
+    >
       {/* Background Decorative Circles */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -z-10" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] -z-10" />
@@ -134,7 +146,10 @@ export function ProjectsSection() {
           </div>
 
           {/* Projects Grid with Layout Animation */}
-          <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div
+            layout
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
             <AnimatePresence mode="popLayout">
               {visibleProjects.map((project, index) => (
                 <motion.article
@@ -151,21 +166,29 @@ export function ProjectsSection() {
                     <motion.img
                       src={project.image}
                       alt={project.title}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
                     />
-                    
+
                     {/* Hover Actions Overlay */}
                     <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-4">
-                      <motion.a 
-                        href={project.liveUrl} target="_blank"
-                        whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
+                      <motion.a
+                        href={project.liveUrl}
+                        target="_blank"
+                        aria-label={`View live site for ${project.title}`}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
                         className="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-xl"
                       >
                         <Globe size={20} />
                       </motion.a>
-                      <motion.a 
-                        href={project.githubUrl} target="_blank"
-                        whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
+                      <motion.a
+                        href={project.githubUrl}
+                        target="_blank"
+                        aria-label={`View live site for ${project.title}`}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
                         className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center shadow-xl border border-white/20"
                       >
                         <Github size={20} />
@@ -193,7 +216,12 @@ export function ProjectsSection() {
                     <div className="flex items-center justify-between pt-6 border-t border-white/5 mt-auto">
                       <div className="flex gap-2">
                         {project.technologies.slice(0, 2).map((tech) => (
-                          <span key={tech} className="text-[10px] font-mono text-slate-500">#{tech}</span>
+                          <span
+                            key={tech}
+                            className="text-[10px] font-mono text-slate-500"
+                          >
+                            #{tech}
+                          </span>
                         ))}
                       </div>
                       <Button
@@ -209,7 +237,7 @@ export function ProjectsSection() {
                   </div>
 
                   {/* Bottom Glow Effect */}
-                  <div 
+                  <div
                     className="absolute bottom-0 left-0 h-1 w-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[0_0_15px_rgba(var(--primary),0.5)]"
                     style={{ backgroundColor: project.color }}
                   />
@@ -219,7 +247,7 @@ export function ProjectsSection() {
           </motion.div>
 
           {/* View More Button */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             className="mt-16 flex justify-center"
@@ -230,9 +258,11 @@ export function ProjectsSection() {
             >
               <span className="relative z-10 flex items-center gap-3 font-black tracking-[0.2em] text-sm">
                 {showAll ? "SHOW LESS" : "EXPLORE ALL PROJECTS"}
-                <ChevronDown className={`w-5 h-5 transition-transform duration-500 ${showAll ? "rotate-180" : ""}`} />
+                <ChevronDown
+                  className={`w-5 h-5 transition-transform duration-500 ${showAll ? "rotate-180" : ""}`}
+                />
               </span>
-              <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-500 -z-0" />
+              <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-0" />
             </Button>
           </motion.div>
         </motion.div>

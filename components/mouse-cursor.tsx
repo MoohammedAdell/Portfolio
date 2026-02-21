@@ -35,7 +35,7 @@ export function MouseCursor() {
   }, [mouseX, mouseY]);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[99999] hidden md:block">
+    <div className="fixed inset-0 pointer-events-none z-99999 hidden md:block">
       <motion.div
         className="fixed w-2 h-2 bg-primary rounded-full"
         style={{
@@ -64,7 +64,7 @@ export function MouseCursor() {
       />
 
       <motion.div
-        className="fixed w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px]"
+        className="fixed w-100 h-100 bg-primary/5 rounded-full blur-[100px]"
         style={{
           x: glowX,
           y: glowY,

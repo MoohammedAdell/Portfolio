@@ -4,28 +4,61 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { LoadingScreen } from "@/components/loading-screen";
-import { MouseCursor } from "@/components/mouse-cursor"; // تأكد من المسار
+import { MouseCursor } from "@/components/mouse-cursor";
 
-// Section: Fonts Configuration
-const inter = Inter({ 
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-inter", 
+  variable: "--font-inter",
 });
 
-const jetbrainsMono = JetBrains_Mono({ 
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-mono", 
+  variable: "--font-mono",
 });
 
-// Section: SEO & Metadata
+// --- SECTION: SEO & METADATA UPDATED ---
 export const metadata: Metadata = {
-  title: "Mohamed Adel | Front-End Developer",
+  title: "MADEL | Design Driven Front-End Architect",
   description:
-    "I build modern, fast, and animated web experiences. Front-End Developer specializing in React, Tailwind CSS, and Framer Motion.",
-  keywords: ["Front-End Developer", "React", "Next.js", "Mohamed Adel", "UI/UX Designer"],
+    "Mohamed Adel: Specializing in building high-end digital products that combine clean code with exceptional visual identity.",
+  keywords: [
+    "Front-End Developer",
+    "React",
+    "Next.js",
+    "Mohamed Adel",
+    "MADEL",
+    "UI/UX Designer",
+    "Framer Motion",
+  ],
   authors: [{ name: "Mohamed Adel" }],
+
   icons: {
     apple: "/apple-icon.png",
+  },
+
+  openGraph: {
+    title: "MADEL | Creative Portfolio Showcase",
+    description:
+      "Explore a unique fusion of design and performance. Built with Next.js & Framer Motion.",
+    url: "https://madel-portfolio.vercel.app/",
+    siteName: "MADEL Portfolio",
+    images: [
+      {
+        url: "/og-image.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "MADEL Portfolio Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "MADEL | Front-End Architect",
+    description: "High-end digital experiences powered by clean code.",
+    images: ["/og-image.png"],
   },
 };
 
@@ -36,23 +69,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
-      <body 
+      <body
         className={`
           ${inter.variable} 
           ${jetbrainsMono.variable} 
           font-sans antialiased 
-          bg-[#020617] text-white 
+          bg-[#020202] text-white 
           selection:bg-primary/30 selection:text-primary
         `}
       >
-        {/* Section: Core Global Components */}
         <LoadingScreen />
         <MouseCursor />
-        
-        {/* Section: Main Content */}
-        <div className="relative z-0">
-          {children}
-        </div>
+
+        <div className="relative z-0">{children}</div>
 
         <Analytics />
       </body>
