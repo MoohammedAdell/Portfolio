@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     siteName: "MADEL Portfolio",
     images: [
       {
-        url: "/og-image.jpeg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "MADEL Portfolio Preview",
