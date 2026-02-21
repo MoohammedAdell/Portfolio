@@ -128,6 +128,7 @@ export function ContactSection() {
                     <motion.div
                       key={idx}
                       whileHover={{ x: 10 }}
+                      aria-label="Open menu"
                       className="flex items-center gap-5 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-primary/40 transition-all group"
                     >
                       <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-black transition-all">
@@ -164,6 +165,7 @@ export function ContactSection() {
                       key={idx}
                       href={link.href}
                       target="_blank"
+                      aria-label="Open menu"
                       whileHover={{ y: -5, scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                       className="w-14 h-14 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-white hover:border-primary transition-all shadow-xl shadow-black/20"
