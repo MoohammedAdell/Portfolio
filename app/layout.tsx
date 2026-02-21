@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     siteName: "MADEL Portfolio",
     images: [
       {
-        url: "/og-image.png",
+        url: "https://madel-portfolio.vercel.app/og-image.png",
         width: 1200,
         height: 630,
         alt: "MADEL Portfolio Preview",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "MADEL | Front-End Architect",
     description: "High-end digital experiences powered by clean code.",
-    images: ["/og-image.png"],
+    images: ["https://madel-portfolio.vercel.app/og-image.png"],
   },
 };
 
