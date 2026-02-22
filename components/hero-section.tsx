@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Github, Linkedin, Mail, MousePointer2, Sparkles } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail, MousePointer2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRef } from "react";
 
@@ -40,18 +40,28 @@ export function HeroSection() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-5xl mx-auto">
           
-          <motion.div
+       <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-xl mb-10 group"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative inline-flex items-center gap-4 px-6 py-2.5 rounded-full bg-gradient-to-r from-emerald-500/10 via-white/[0.05] to-transparent border border-emerald-500/20 backdrop-blur-2xl mb-12 group hover:border-emerald-500/40 transition-all duration-500 shadow-[0_0_30px_rgba(16,185,129,0.05)]"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            <div className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-40"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500 shadow-[0_0_10px_#10b981]"></span>
+            </div>
+
+            <span className="text-[10px] font-mono tracking-[0.3em] text-emerald-400/90 uppercase select-none">
+              Available for new projects
             </span>
-            <span className="text-xs font-mono tracking-[0.2em] text-slate-400 uppercase">
-              Systems Architect & Developer
-            </span>
+
+            <motion.span 
+              className="hidden md:block opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-emerald-500"
+            >
+              <ArrowUpRight size={14} />
+            </motion.span>
+
+            <div className="absolute inset-0 rounded-full bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
           </motion.div>
 
           <div className="mb-8 overflow-visible">

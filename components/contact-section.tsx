@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import {
   Send,
@@ -11,6 +11,7 @@ import {
   MapPin,
   Loader2,
   MessageSquare,
+  Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -27,7 +28,6 @@ export function ContactSection() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     try {
       await emailjs.sendForm(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
@@ -39,7 +39,6 @@ export function ContactSection() {
       formRef.current?.reset();
     } catch (error) {
       alert("Oops! Something went wrong. Try again?");
-      console.error(error);
     } finally {
       setIsSubmitting(false);
     }
@@ -49,171 +48,196 @@ export function ContactSection() {
     {
       icon: Github,
       href: "https://github.com/MoohammedAdell",
-      label: "GitHub",
-      color: "#6e5494",
+      color: "hover:text-[#6e5494]",
     },
     {
       icon: Linkedin,
       href: "https://www.linkedin.com/in/mohamedadel-fe/",
-      label: "LinkedIn",
-      color: "#0077b5",
+      color: "hover:text-[#0077b5]",
     },
     {
       icon: Mail,
       href: "mailto:mohammedadell496@gmail.com",
-      label: "Email",
-      color: "#ea4335",
+      color: "hover:text-[#ea4335]",
     },
   ];
 
   return (
     <section
       id="contact"
-      className="py-24 sm:py-32 relative bg-[#020617] overflow-hidden"
+      className="py-24 lg:py-40 relative bg-[#020617] overflow-hidden"
     >
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-primary/10 rounded-full blur-[150px] -z-10" />
+      {/* Background Decorative Elements */}
+      <div className="absolute top-0 right-0 w-125 h-125 bg-primary/5 rounded-full blur-[120px] -z-10 opacity-50" />
+      <div className="absolute bottom-0 left-0 w-100 h-100 bg-blue-500/5 rounded-full blur-[120px] -z-10 opacity-30" />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div ref={ref} className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-20">
+      <div className="container mx-auto px-6">
+        <motion.div ref={ref} className="max-w-7xl mx-auto">
+          {/* Header Section */}
+          <div className="mb-20">
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-[10px] font-mono tracking-widest uppercase mb-6"
+              initial={{ opacity: 0, x: -20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              className="flex items-center gap-3 text-primary mb-4"
             >
-              <MessageSquare
-                size={12}
-                className="animate-pulse"
-                aria-hidden="true"
-              />
-              Get In Touch
+              <div className="h-px w-12 bg-primary/50" />
+              <span className="text-xs font-mono uppercase tracking-[0.3em]">
+                Available for projects
+              </span>
             </motion.div>
 
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight"
+              className="text-5xl md:text-8xl font-black text-white leading-none tracking-tighter"
             >
-              Let’s Build{" "}
-              <span className="text-primary italic">Something Great</span>
+              Ready to start <br />
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-primary via-blue-400 to-emerald-400">
+                the next big thing?
+              </span>
             </motion.h2>
           </div>
 
-          <div className="grid lg:grid-cols-5 gap-16 items-start">
-            {/* Contact Info */}
+          <div className="grid lg:grid-cols-12 gap-12 items-stretch">
+            {/* Left Side: Contact Info */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 0.2 }}
-              className="lg:col-span-2 space-y-10"
+              className="lg:col-span-4 flex flex-col justify-between space-y-12"
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
             >
-              <div className="space-y-6">
-                <h3 className="text-2xl font-bold text-white">
-                  Contact Information
-                </h3>
+              <div className="space-y-8">
+                <p className="text-slate-400 text-lg leading-relaxed max-w-sm">
+                  Have a question or a proposal, or just want to say hello? Go
+                  ahead.
+                </p>
 
                 <div className="space-y-4">
-                  <div className="flex items-center gap-5 p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary">
-                      <Mail size={22} aria-hidden="true" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-slate-400">Email</p>
-                      <a
-                        href="mailto:mohammedadell496@gmail.com"
-                        className="text-white hover:text-primary transition"
-                      >
-                        mohammedadell496@gmail.com
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-5 p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary">
-                      <MapPin size={22} aria-hidden="true" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-slate-400">Location</p>
-                      <p className="text-white">Egypt</p>
-                    </div>
-                  </div>
+                  {[
+                    {
+                      icon: Mail,
+                      label: "Email",
+                      value: "mohammedadell496@gmail.com",
+                      href: "mailto:mohammedadell496@gmail.com",
+                    },
+                    {
+                      icon: MapPin,
+                      label: "Location",
+                      value: "Egypt",
+                      href: "#",
+                    },
+                  ].map((item, i) => (
+                    <a
+                      key={i}
+                      href={item.href}
+                      className="group flex items-center gap-4 p-2 -ml-2 hover:bg-white/5 rounded-2xl transition-all border border-transparent hover:border-white/10"
+                    >
+                      <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                        <item.icon size={20} />
+                      </div>
+                      <div>
+                        <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">
+                          {item.label}
+                        </p>
+                        <p className="text-white font-medium group-hover:text-primary transition-colors">
+                          {item.value}
+                        </p>
+                      </div>
+                    </a>
+                  ))}
                 </div>
               </div>
 
-              {/* Social Links */}
-              <div className="space-y-6">
-                <h4 className="text-sm font-bold uppercase text-slate-500">
-                  Find me on
-                </h4>
-
+              {/* Socials */}
+              <div className="pt-8 border-t border-white/5">
+                <p className="text-xs font-mono text-slate-600 uppercase mb-6 tracking-widest">
+                  Connect with me
+                </p>
                 <div className="flex gap-4">
                   {socialLinks.map((link, idx) => (
-                    <motion.a
+                    <a
                       key={idx}
                       href={link.href}
                       target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Visit my ${link.label} profile`}
-                      whileHover={{ y: -5, scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="w-14 h-14 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center hover:border-primary transition-all"
-                      style={{ color: link.color }}
+                      className={`w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-slate-400 transition-all duration-300 hover:border-primary/50 hover:bg-primary/5 ${link.color}`}
                     >
-                      <link.icon size={24} aria-hidden="true" />
-                    </motion.a>
+                      <link.icon size={20} />
+                    </a>
                   ))}
                 </div>
               </div>
             </motion.div>
 
-            {/* Contact Form */}
+            {/* Right Side: Form */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.4 }}
-              className="lg:col-span-3"
+              className="lg:col-span-8"
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
             >
               <form
                 ref={formRef}
                 onSubmit={handleSubmit}
-                className="bg-[#0a0f1d] p-8 sm:p-12 rounded-[2.5rem] border border-white/10 space-y-8"
+                className="relative group p-1"
               >
-                <div className="grid sm:grid-cols-2 gap-6">
-                  <div>
-                    <Label htmlFor="name">Your Name</Label>
-                    <Input id="name" name="name" required />
-                  </div>
-                  <div>
-                    <Label htmlFor="email">Email Address</Label>
-                    <Input id="email" name="email" type="email" required />
-                  </div>
-                </div>
+                {/* Glowing border effect */}
+                <div className="absolute -inset-0.5 bg-linear-to-r from-primary/20 to-blue-500/20 rounded-[2.5rem] blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
 
-                <div>
-                  <Label htmlFor="message">Your Message</Label>
-                  <Textarea id="message" name="message" rows={6} required />
-                </div>
+                <div className="relative bg-[#0a0f1d] p-8 md:p-12 rounded-[2.5rem] border border-white/10 space-y-8">
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
+                      <Label className="text-xs font-mono uppercase tracking-widest text-slate-400 ml-1">
+                        Full Name
+                      </Label>
+                      <Input
+                        id="name"
+                        name="name"
+                        required
+                        className="bg-white/5 border-white/10 h-14 rounded-xl focus:ring-primary/50 focus:border-primary transition-all placeholder:text-slate-700"
+                        placeholder="John Doe"
+                      />
+                    </div>
+                    <div className="space-y-3">
+                      <Label className="text-xs font-mono uppercase tracking-widest text-slate-400 ml-1">
+                        Email Address
+                      </Label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
+                        className="bg-white/5 border-white/10 h-14 rounded-xl focus:ring-primary/50 focus:border-primary transition-all placeholder:text-slate-700"
+                        placeholder="john@example.com"
+                      />
+                    </div>
+                  </div>
 
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full h-16 rounded-2xl bg-primary text-black font-bold uppercase tracking-widest"
-                >
-                  <div aria-live="polite" className="flex items-center gap-2">
+                  <div className="space-y-3">
+                    <Label className="text-xs font-mono uppercase tracking-widest text-slate-400 ml-1">
+                      Your Message
+                    </Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      rows={5}
+                      required
+                      className="bg-white/5 border-white/10 rounded-2xl focus:ring-primary/50 focus:border-primary transition-all resize-none placeholder:text-slate-700"
+                      placeholder="Tell me about your project..."
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full h-16 rounded-2xl bg-primary hover:bg-primary/90 text-black font-black uppercase tracking-[0.2em] transition-all hover:scale-[1.01] active:scale-[0.98] shadow-xl shadow-primary/20"
+                  >
                     {isSubmitting ? (
-                      <>
-                        <Loader2 className="animate-spin" aria-hidden="true" />
-                        Transmitting...
-                      </>
+                      <Loader2 className="animate-spin" />
                     ) : (
-                      <>
-                        Send Message
-                        <Send size={18} aria-hidden="true" />
-                      </>
+                      <span className="flex items-center gap-3">
+                        Launch Message <Send size={18} />
+                      </span>
                     )}
-                  </div>
-                </Button>
+                  </Button>
+                </div>
               </form>
             </motion.div>
           </div>
