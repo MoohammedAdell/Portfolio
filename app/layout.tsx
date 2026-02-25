@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   ],
 
   authors: [{ name: "Mohamed Adel" }],
-  creator: "Mohamed Adel",
+  creator: "Mohamed Adel", 
   publisher: "Mohamed Adel",
 
   robots: {
