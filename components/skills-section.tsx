@@ -2,19 +2,19 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGitAlt, FaGithub, FaLayerGroup } from "react-icons/fa";
+import { FaHtml5, FaJs, FaReact, FaGithub, FaLayerGroup } from "react-icons/fa";
 import { SiTailwindcss, SiFramer, SiNextdotjs, SiTypescript } from "react-icons/si";
 
 const skills = [
-  { name: "React", icon: FaReact, level: 90, color: "#61DAFB", category: "Frontend" },
-  { name: "Next.js", icon: SiNextdotjs, level: 85, color: "#ffffff", category: "Framework" },
-  { name: "TypeScript", icon: SiTypescript, level: 80, color: "#3178C6", category: "Language" },
-  { name: "JavaScript", icon: FaJs, level: 90, color: "#F7DF1E", category: "Language" },
-  { name: "Tailwind CSS", icon: SiTailwindcss, level: 95, color: "#38BDF8", category: "Styling" },
-  { name: "Framer Motion", icon: SiFramer, level: 85, color: "#FF4154", category: "Animation" },
-  { name: "Zustand", icon: FaLayerGroup, level: 80, color: "#4F46E5", category: "State" },
-  { name: "HTML/CSS", icon: FaHtml5, level: 98, color: "#E34F26", category: "Fundamentals" },
-  { name: "Git/GitHub", icon: FaGithub, level: 88, color: "#6E5494", category: "Tools" },
+  { name: "React", icon: FaReact, color: "#61DAFB", category: "Frontend" },
+  { name: "Next.js", icon: SiNextdotjs, color: "#ffffff", category: "Framework" },
+  { name: "TypeScript", icon: SiTypescript, color: "#3178C6", category: "Language" },
+  { name: "JavaScript", icon: FaJs, color: "#F7DF1E", category: "Language" },
+  { name: "Tailwind CSS", icon: SiTailwindcss, color: "#38BDF8", category: "Styling" },
+  { name: "Framer Motion", icon: SiFramer, color: "#FF4154", category: "Animation" },
+  { name: "Zustand", icon: FaLayerGroup, color: "#4F46E5", category: "State" },
+  { name: "HTML/CSS", icon: FaHtml5, color: "#E34F26", category: "Fundamentals" },
+  { name: "Git/GitHub", icon: FaGithub, color: "#6E5494", category: "Tools" },
 ];
 
 export function SkillsSection() {
@@ -27,11 +27,9 @@ export function SkillsSection() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          ref={ref}
-          className="max-w-6xl mx-auto"
-        >
-          {/* ===== Section Header ===== */}
+        <motion.div ref={ref} className="max-w-6xl mx-auto">
+          
+          {/* ===== Section Header (نفس التايتل الأصلي) ===== */}
           <div className="text-center mb-24">
             <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -62,73 +60,48 @@ export function SkillsSection() {
             </motion.p>
           </div>
 
-          {/* ===== Skills Grid ===== */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* ===== Skills Grid (تصميم مطور بدون ليفل) ===== */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
             {skills.map((skill, index) => (
               <motion.div
                 key={skill.name}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ 
-                  delay: index * 0.05, 
-                  type: "spring", 
-                  stiffness: 100 
-                }}
-                whileHover={{ y: -10 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: index * 0.05 }}
+                whileHover={{ y: -8 }}
                 className="group relative"
               >
-                {/* Glowing Aura Effect */}
+                {/* Aura Glow */}
                 <div 
-                  className="absolute inset-0 rounded-3xl blur-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"
+                  className="absolute inset-0 rounded-3xl blur-xl opacity-0 group-hover:opacity-10 transition-opacity duration-500"
                   style={{ backgroundColor: skill.color }}
                 />
 
-                <div className="relative h-full bg-white/[0.03] backdrop-blur-md border border-white/10 p-8 rounded-3xl transition-all duration-300 group-hover:border-white/20 group-hover:bg-white/[0.05]">
+                <div className="relative overflow-hidden bg-white/[0.02] backdrop-blur-sm border border-white/5 p-8 rounded-3xl transition-all duration-300 group-hover:border-white/20 group-hover:bg-white/[0.04] flex flex-col items-center text-center">
                   
-                  {/* Skill Category & Index */}
-                  <div className="flex justify-between items-start mb-8">
-                    <span className="text-[10px] font-mono tracking-widest text-slate-500 uppercase">
-                      {skill.category}
-                    </span>
-                    <span className="text-xl font-black text-white/5 group-hover:text-white/10 transition-colors">
-                      0{index + 1}
-                    </span>
+                  {/* Category Tag */}
+                  <span className="text-[9px] font-mono tracking-[0.2em] text-slate-500 uppercase mb-6 block">
+                    {skill.category}
+                  </span>
+
+                  {/* Icon Container */}
+                  <div 
+                    className="p-5 rounded-2xl bg-white/5 mb-6 transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_30px_-5px_rgba(0,0,0,0.3)]"
+                    style={{ color: skill.color, boxShadow: `0 10px 30px -10px ${skill.color}40` }}
+                  >
+                    <skill.icon size={40} />
                   </div>
 
-                  {/* Icon & Name */}
-                  <div className="flex items-center gap-4 mb-10">
-                    <div 
-                      className="p-3 rounded-2xl bg-white/5 border border-white/5 group-hover:scale-110 transition-transform duration-500"
-                      style={{ color: skill.color }}
-                    >
-                      <skill.icon size={32} />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">
-                        {skill.name}
-                      </h3>
-                      <div className="text-sm font-mono text-primary/80">{skill.level}% Proficiency</div>
-                    </div>
-                  </div>
-
-                  {/* Enhanced Progress Bar */}
-                  <div className="relative h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={isInView ? { width: `${skill.level}%` } : {}}
-                      transition={{ delay: 0.5 + index * 0.1, duration: 1.5, ease: "circOut" }}
-                      className="absolute top-0 left-0 h-full rounded-full"
-                      style={{ backgroundColor: skill.color }}
-                    >
-                      {/* Inner Glow Pulse */}
-                      <motion.div 
-                        animate={{ x: ["-100%", "200%"] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent w-1/2"
-                      />
-                    </motion.div>
-                  </div>
-
+                  {/* Skill Name */}
+                  <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">
+                    {skill.name}
+                  </h3>
+                  
+                  {/* Bottom Line Decor */}
+                  <div 
+                    className="w-0 group-hover:w-12 h-[2px] mt-4 transition-all duration-500 rounded-full"
+                    style={{ backgroundColor: skill.color }}
+                  />
                 </div>
               </motion.div>
             ))}
