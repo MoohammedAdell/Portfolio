@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   ],
 
   authors: [{ name: "Mohamed Adel" }],
-  creator: "Mohamed Adel", 
+  creator: "Mohamed Adel",
   publisher: "Mohamed Adel",
 
   robots: {
@@ -61,8 +61,8 @@ export const metadata: Metadata = {
   },
 
   icons: {
-    icon: "/logo.jpeg",
-    apple: "/apple-icon.png",
+    icon: "/logo.png",
+    apple: "/logo.png",
   },
 
   openGraph: {
