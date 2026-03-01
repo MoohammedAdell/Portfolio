@@ -46,7 +46,6 @@ export function LoadingScreen() {
           />
 
           <div className="relative flex flex-col items-center gap-6">
-            {/* اللوجو مع أنيميشن ظهور تدريجي */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -58,7 +57,6 @@ export function LoadingScreen() {
                 alt="Logo" 
                 className="w-20 h-20 md:w-28 md:h-28 object-contain mb-2" 
               />
-              {/* انعكاس خفيف تحت اللوجو */}
               <div className="absolute -bottom-2 left-0 right-0 h-4 bg-primary/20 blur-xl rounded-full" />
             </motion.div>
 
@@ -91,7 +89,6 @@ export function LoadingScreen() {
             </div>
           </div>
 
-          {/* زوايا الديكور (Architectural Elements) */}
           <div className="absolute inset-8 pointer-events-none opacity-20">
             <div className="absolute top-0 left-0 w-8 h-[1px] bg-primary/50" />
             <div className="absolute top-0 left-0 w-[1px] h-8 bg-primary/50" />
