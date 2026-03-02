@@ -8,7 +8,7 @@ export function LoadingScreen() {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    const duration = 3000; // 3 ثوانٍ وقت مثالي لعرض اللوجو
+    const duration = 3000; 
     const startTime = performance.now();
 
     const update = (now: number) => {
@@ -34,8 +34,7 @@ export function LoadingScreen() {
           transition={{ duration: 0.6, ease: "easeInOut" }}
           className="fixed inset-0 z-[10000] flex flex-col items-center justify-center bg-[#020202] overflow-hidden"
         >
-          {/* إضاءة خلفية ناعمة متدرجة (Ambient Glow) */}
-          {/* النور ده هيتحرك ببطء عشان يدي روح للتصميم */}
+         
           <motion.div 
             animate={{ 
               scale: [1, 1.2, 1],
