@@ -34,7 +34,7 @@ export function LoadingScreen() {
           transition={{ duration: 0.6, ease: "easeInOut" }}
           className="fixed inset-0 z-[10000] flex flex-col items-center justify-center bg-[#020202] overflow-hidden"
         >
-         
+
           <motion.div 
             animate={{ 
               scale: [1, 1.2, 1],
