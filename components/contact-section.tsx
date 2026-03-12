@@ -52,7 +52,7 @@ export function ContactSection() {
     },
     {
       icon: Linkedin,
-      href: "https://www.linkedin.com/in/mohamedadel-fe/",
+      href: "https://www.linkedin.com/in/mohamed-adel-fe/",
       color: "hover:text-[#0077b5]",
     },
     {

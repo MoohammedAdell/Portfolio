@@ -101,7 +101,7 @@ export function HeroSection() {
               className="text-5xl sm:text-8xl md:text-9xl font-black tracking-[-0.04em] leading-[0.9] whitespace-nowrap text-white drop-shadow-lg"
             >
               Design <span className="text-white/20">Driven</span>
-              
+
             </motion.h1>
 
             <motion.h1
@@ -179,7 +179,7 @@ export function HeroSection() {
               },
               {
                 icon: <Linkedin size={24} />,
-                link: "https://www.linkedin.com/in/mohamed-adel-a9370330a/",
+                link: "https://www.linkedin.com/in/mohamed-adel-fe/",
               },
               {
                 icon: <Mail size={24} />,
