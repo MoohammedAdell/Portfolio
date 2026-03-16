@@ -61,8 +61,6 @@ export function ContactSection() {
       color: "hover:text-[#ea4335]",
     },
   ];
-
-  
   return (
     <section
       id="contact"
