@@ -222,8 +222,6 @@ export function ContactSection() {
                       placeholder="Tell me about your project..."
                     />
                   </div>
-
-
                   <Button
                     type="submit"
                     disabled={isSubmitting}
